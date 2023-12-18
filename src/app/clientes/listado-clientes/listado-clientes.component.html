@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3"*ngFor="let c of clientes;let i=index;">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Cliente {{i+1}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Cliente {{c.nombre}}</h6>
+                  <p class="card-text">Email: {{c.email}} Movil: {{c.movil}} Edad: {{c.edad}}</p>
+                  <a class="card-link" (click)="borrarCliente(c)" style="color:red;"><i class="bi bi-trash"></i> Borrar Cliente</a>
+                  <a href="#" class="card-link" routerLink="/clientes/modificar-cliente/{{c.id}}"><i class="bi bi-pencil-square"></i> Modificar</a>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+<button class="btn btn-primary" routerLink="/eventos" style="margin:10px;"><i class="bi bi-calendar-event"></i> Ir a Eventos</button>

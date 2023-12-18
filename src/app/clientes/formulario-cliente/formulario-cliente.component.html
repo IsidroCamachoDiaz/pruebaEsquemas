@@ -1,0 +1,23 @@
+<form [formGroup]="formCliente" class="container border p-2" (submit)="guardarCliente()">
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" formControlName="nombre" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" formControlName="edad" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="movil">Movil:</label>
+        <input type="text" id="movil" formControlName="movil" class="form-control">
+    </div> <div class="form-group">
+        <input type="text" id="id" formControlName="id" class="d-none">
+    </div>
+    <button class="btn btn-success" type="submit" [disabled]="!formCliente.valid"><i class="bi bi-download"></i> Guardar</button>
+</form>
+<button class="btn btn-primary" (click)="goBack()" style="margin: 10px;"><i class="bi bi-arrow-90deg-left"></i> Volver</button>
+<button class="btn btn-info"(click)="irAEventos()" style="margin: 10px; color:white;"><i class="bi bi-calendar-event"></i> Ir a Eventos</button>
