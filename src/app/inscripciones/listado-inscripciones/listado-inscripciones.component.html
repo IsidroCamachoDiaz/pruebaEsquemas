@@ -11,7 +11,12 @@
                   <li class="list-group-item" *ngIf="i.pagado">Esta Pagado</li>
                   <li class="list-group-item" *ngIf="!i.pagado">No esta Pagado</li>
                 </ul>
+                <div class="row">
+                  <div class="col-6"><a (click)="borrarInscripcion(i.id!)" class="card-link" style="color:red;text-align: center;">Borrar Incripcion</a></div>
+                  <div class="col-6"><a routerLink="/inscripciones/modificar-inscripcion/{{i.id}}" class="card-link">Modificar</a></div>
+                </div>
               </div>
         </div>
+        <div class="col-12"><button routerLink="/inscripciones/nueva-inscripcion" style="margin:10px;" class="btn btn-primary">Incribir</button></div>
     </div>
 </div>

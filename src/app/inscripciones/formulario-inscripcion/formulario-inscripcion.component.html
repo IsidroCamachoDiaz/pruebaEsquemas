@@ -1,18 +1,24 @@
-<form class="container" [formGroup]="formulario" (ngSubmit)="anadirFormulario()">
+<form class="container border p-2" [formGroup]="formulario" (ngSubmit)="anadirFormulario()">
     <div class="form-group">
-        <label for="idEvento">Evento al que va a asistir:</label>
+        <label for="idEvento">Evento al que va a asistir: </label>
         <select formControlName="idEvento">
             <option value="" disabled selected hidden>Selecciona una opción</option>
             <option *ngFor="let e of eventos" [value]="e.id">{{e.nombreEvento}}</option>
         </select>
     </div>
+    <div *ngIf="formulario.controls['idEvento'].errors" class="text-danger">
+        Seleccione un Evento
+    </div>
 
     <div class="form-group">
-        <label for="idCliente">Cliente que asistira al evento</label>
+        <label for="idCliente">Cliente que asistira al evento: </label>
         <select formControlName="idCliente">
             <option value="" disabled selected hidden>Selecciona una opción</option>
             <option *ngFor="let c of clientes" [value]="c.id">{{c.nombre}}</option>
         </select>
+    </div>
+    <div *ngIf="formulario.controls['idCliente'].errors" class="text-danger">
+        Seleccione un Cliente
     </div>
 
     <div class="form-group">
@@ -22,3 +28,4 @@
     </div>
     <button type="submit" [disabled]="!formulario.valid" class="btn btn-primary">Inscribirse</button>
 </form>
+<button class="btn btn-danger" style="margin:10px;" routerLink="/inscripciones/listado-inscripciones">Cancelar</button>

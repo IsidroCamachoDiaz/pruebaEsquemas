@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -39,7 +40,7 @@ export class FormularioEventosComponent implements OnInit {
     tipoEvento: ["", Validators.required],
     numeroInscritos: [0, Validators.required],
     limiteIncripciones: [0, Validators.required],
-    fechaEvento: [new Date, Validators.required],
+    fechaEvento: [new Date(), Validators.required],
     lugar: ["", Validators.required],
     precio: [0, Validators.required]
   })

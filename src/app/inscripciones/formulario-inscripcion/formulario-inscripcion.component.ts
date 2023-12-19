@@ -19,7 +19,14 @@ export class FormularioInscripcionComponent implements OnInit{
     this.fbs.getColletion("clientes").subscribe(res=>this.clientes=res);
     if(this.ruta.snapshot.paramMap.get("id")){
       this.id=this.ruta.snapshot.paramMap.get("id");
-      this.fbs.getDocumentById(this.id,"inscripciones");
+      this.fbs.getDocumentById(this.id,"inscripciones").subscribe(res=>{
+        this.i=res;
+        this.formulario.patchValue({
+          idCliente:this.i.idCliente,
+          idEvento:this.i.idEvento,
+          pagado:this.i.pagado
+        })
+      });
     }
   }
   i:Inscripcion={idCliente:"",idEvento:"",pagado:false}
@@ -46,13 +53,27 @@ export class FormularioInscripcionComponent implements OnInit{
     this.i.idEvento=this.formulario.get("idEvento")?.value!;
     this.i.pagado=this.formulario.get("pagado")?.value!;
 
-    if(this.ruta.snapshot.paramMap.get("id")){
-      this.modificarIncripcion();
-    }
-    else{
-      this.crearInscripcion();
-    }
-    this.router.navigateByUrl("/inscripciones/listado-inscripciones");
+    this.fbs.getDocumentById(this.i.idEvento,"eventos").subscribe(res=>{
+      let eventoActual:Evento=res;
+      if(eventoActual.numeroInscritos==eventoActual.limiteIncripciones){
+        alert("No se puede inscribir mas gente a este evento")
+      }
+      else{
+        if(this.ruta.snapshot.paramMap.get("id")){
+          this.modificarIncripcion();
+        }
+        else{
+          this.crearInscripcion();
+        }
+        let d=this.fbs.getDocumentById(this.i.idEvento,"eventos").subscribe(res=>{
+          let evenSinActu:Evento=res;
+          evenSinActu.numeroInscritos=evenSinActu.numeroInscritos+1;
+          d.unsubscribe();
+          this.fbs.updateDocument(evenSinActu,"eventos");
+        });
+        this.router.navigateByUrl("/inscripciones/listado-inscripciones");
+      }
+    });
   }
 
 }

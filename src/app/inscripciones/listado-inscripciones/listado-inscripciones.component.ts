@@ -39,4 +39,8 @@ export class ListadoInscripcionesComponent implements OnInit {
     return "";
   }
 
+  borrarInscripcion(id:string){
+    this.fbs.deleteDoc(id,"inscripciones");
+  }
+
 }
