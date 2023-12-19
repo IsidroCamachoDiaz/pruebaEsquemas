@@ -1,0 +1,15 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3" *ngFor="let e of eventos; let i=index;">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Evento {{i+1}}:</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{e.nombreEvento}} el {{e.fechaEvento}}</h6>
+                  <p class="card-text">Tipo: {{e.tipoEvento}} Precio: {{e.precio}} Lugar: {{e.lugar}} Inscritos: {{e.numeroInscritos}} Limite: {{e.limiteIncripciones}} Quedan: {{e.limiteIncripciones-e.numeroInscritos}}</p>
+                  <a class="card-link" (click)="eliminarEvento(e.id!)" style="color: red;"><i class="bi bi-x-circle-fill"></i> Eliminar Evento</a>
+                  <a class="card-link" routerLink="/eventos/modificar-evento/{{e.id}}"><i class="bi bi-arrow-up-left-circle"></i> Modificar</a>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

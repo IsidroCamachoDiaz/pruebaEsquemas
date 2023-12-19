@@ -1,0 +1,60 @@
+<form [formGroup]="formulario" (ngSubmit)="anadirFormulario()" class="container">
+
+    <div class="form-group">
+        <label for="nombreEvento">Nombre del Evento:</label>
+        <input class="form-control" formControlName="nombreEvento" name="nombreEvento">
+    </div>
+    <div *ngIf="formulario.controls['nombreEvento'].errors" class="text-danger">
+        El nombre es Requerido.
+    </div>
+
+    <div class="form-group">
+        <label for="tipoEvento">Tipo de Evento:</label>
+        <input class="form-control" formControlName="tipoEvento" name="tipoEvento">
+    </div>
+    <div *ngIf="formulario.controls['tipoEvento'].errors" class="text-danger">
+        El tipo es Requerido.
+    </div>
+
+    <div class="form-group">
+        <label for="numeroInscritos">Numero de Inscritos:</label>
+        <input class="form-control" formControlName="numeroInscritos" name="numeroInscritos" type="number">
+    </div>
+    <div *ngIf="formulario.controls['numeroInscritos'].errors" class="text-danger">
+        El numero de Inscritos es Requerido.
+    </div>
+
+    <div class="form-group">
+        <label for="limiteIncripciones">Limite de Inscritos:</label>
+        <input class="form-control" formControlName="limiteIncripciones" name="limiteIncripciones" type="number">
+    </div>
+    <div *ngIf="formulario.controls['limiteIncripciones'].errors" class="text-danger">
+        El numero de maximo Inscritos es Requerido.
+    </div>
+
+    <div class="form-group">
+        <label for="fechaEvento">Fecha del Evento:</label>
+        <input class="form-control" formControlName="fechaEvento" name="fechaEvento" type="date">
+    </div>
+    <div *ngIf="formulario.controls['fechaEvento'].errors" class="text-danger">
+        La fecha del evento es requerida
+    </div>
+
+    <div class="form-group">
+        <label for="lugar">Lugar del Evento:</label>
+        <input class="form-control" formControlName="lugar" name="lugar" type="text">
+    </div>
+    <div *ngIf="formulario.controls['lugar'].errors" class="text-danger">
+        El Lugar del evento es requerido
+    </div>
+
+    <div class="form-group">
+        <label for="precio">Precio del Evento:</label>
+        <input class="form-control" formControlName="precio" name="precio" type="number">
+    </div>
+    <div *ngIf="formulario.controls['precio'].errors" class="text-danger">
+        El Precio del evento es requerido
+    </div>
+
+    <button class="btn btn-info " type="submit" style="color:white;margin: 10px;" [disabled]="!formulario.valid">Guardar Evento</button>
+</form>

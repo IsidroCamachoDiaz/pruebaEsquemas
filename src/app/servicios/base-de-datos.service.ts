@@ -60,8 +60,9 @@ getSubcoleccion(coleccion:string,subcoleccion:string,docId:string){
   return collectionData(collectionRef,{idField:"id"})as Observable<any[]>;
 }
 
-getConsulta(coleccion:string,){
-
+getConsulta(coleccion:string){
+const ref = collection(this.fbs,coleccion);
+return collectionData(ref,{idField:"id"}) as Observable <any[]>;
 }
 
 }

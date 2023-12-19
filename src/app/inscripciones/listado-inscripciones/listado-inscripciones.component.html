@@ -1,0 +1,17 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3"*ngFor="let i of inscripciones;let indi=index">
+            <div class="card" style="width: 18rem;" >
+                <div class="card-header">
+                  Inscripcion {{indi+1}}:
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">{{buscarCliente(i.idCliente)}}</li>
+                  <li class="list-group-item">{{buscarEvento(i.idEvento)}}</li>
+                  <li class="list-group-item" *ngIf="i.pagado">Esta Pagado</li>
+                  <li class="list-group-item" *ngIf="!i.pagado">No esta Pagado</li>
+                </ul>
+              </div>
+        </div>
+    </div>
+</div>
